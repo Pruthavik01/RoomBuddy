@@ -1,0 +1,530 @@
+body{
+    background-color: #121212;
+    color: white;
+    flex-direction: column;
+}
+
+.cont{
+    flex: 1;
+    min-height: 85vh;
+}
+
+a {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navbar {
+    background-color: #FDFDFD;
+    font-weight: bold;
+    padding-left: 2.5rem !important;
+    padding-right: 2.5rem !important;
+}
+
+.container-fluid{
+    flex-wrap: nowrap !important;
+}
+
+footer {
+    height: 3rem;
+    background: #FDFDFD;
+    /* padding: 15px 40px; */
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+   
+
+}
+
+.f-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.f-info-links {
+    display: flex;
+    gap: 20px;
+}
+
+.f-info-links a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+
+.f-info-socials {
+    display: flex;
+    gap: 15px;
+    font-size: 18px;
+    color: #555;
+}
+
+.f-info-socials i:hover {
+    color: #000;
+    cursor: pointer;
+}
+.rows {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem; /* spacing between cards */
+    padding: 1rem;
+}
+ /* Card */
+.listingcard {
+    display: flex;
+    flex-direction: column;  /* stack image + info */
+    height: 15rem;
+    width: 13rem;
+    overflow: hidden;  /* keeps image corners rounded */
+    background: #fff;
+    /* box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.listingcard:hover {
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.listingcard a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.cardimg {
+    width: 100%;
+    height: 9rem;   /* fixed height for consistency */
+    overflow: hidden;
+}
+
+.cardimg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* fills the div, crops excess */
+    border-top-left-radius:  1rem;
+    border-top-right-radius: 1rem;
+    display: block;
+}
+
+.cardinfo {
+    flex: 0.8;
+    padding: 0.7rem;
+    margin-top: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.cardinfo h5 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.cardinfo p {
+    margin: 0.3rem 0 0;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+
+
+/* new route */
+
+.mainNew{
+    margin: auto;
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.imgsection {
+    height: 60.5%;
+    width: 28%;
+    border: 2px solid black;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    border-right: none;
+    overflow: hidden; /* ensures image stays inside rounded corners */
+    min-width: 320px;
+}
+
+.imgsection img {
+    width: 100%;        /* fill container width */
+    height: 100%;       /* fill container height */
+    object-fit: cover;  /* crop & cover without distortion */
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    display: block;
+}
+
+@media (max-width: 500px) {
+  .imgsection {
+    display: none;
+  }
+  .formsection{
+    border-left: 2px solid black ;
+    border-radius: 2rem;
+  }
+}
+
+
+.formsection form {
+    height: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  width: 20rem; 
+
+  margin: 2rem;
+  padding: 1rem;
+  border: 2px solid black;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem ;
+  border-left: none;
+}
+.formsection form input{
+    height: 1.5rem;
+    border-radius: 1rem;
+    padding: 1.2rem;
+    outline: none;
+}
+.addbtn{
+    border-radius: 1rem;
+    justify-content: center;
+    align-items: center;
+    height: 2.2rem;
+    background-color: #FF385C;
+    color: white;
+    border: 2px solid black;
+}
+.addbtn:active{
+    transform: scale(0.98);
+}
+
+
+/* show route */
+.show-div{
+    display: flex;
+    height: 84vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-btnsection{
+    display: flex;
+}
+
+.show-imgdiv{
+    height: 25rem;
+    width: 30rem;
+    margin: 3rem;
+}
+
+.show-imgdiv img{
+    width: 100%;        
+    height: 100%;       
+    object-fit: cover;  
+    border-radius: 2rem;
+    display: block;
+}
+
+.show-des{
+    width: 90%;
+}
+.titelname{
+    margin: 1rem;
+}
+.show-info{
+    padding: 1rem;
+}
+.details{
+    margin: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 780px){
+
+    .show-div{
+        display: flex;
+        flex-direction: column;
+    }
+    .show-imgdiv{
+        height: 15rem;
+        width: 20rem;
+    }
+}
+
+.show-btnsection button{
+    width: 7rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: #FF385C;
+    color: white;
+    justify-content: space-around;
+    align-content: center;
+    /* padding: 1rem; */
+    margin-right: 1rem;
+    margin-top: 1rem;
+    padding: 0.3rem;   
+}
+
+.show-btnsection button:active{
+    transform: scale(0.95);
+}
+.show-btnsection #edit,#reviewbtn{
+    color: black; 
+    background-color: white; 
+    border: 1px solid black;
+}
+
+
+/* edit route */
+
+.edit {
+    display: flex;
+    height: 85vh;
+    /* margin-top: 5rem;
+    margin-bottom: 5rem; */
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btnsection {
+    display: flex;
+}
+
+.edit-imgdiv {
+    height: 25rem;
+    width: 30rem;
+    margin: 3rem;
+}
+
+.edit-imgdiv img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2rem;
+    display: block;
+}
+
+.edit-titelname {
+    margin: 1rem;
+}
+
+.edit-info {
+    padding: 1rem;
+}
+
+.edit-details {
+    margin: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-details div{
+    margin-bottom: 1rem;
+}
+
+.edit-info input{
+    width: 70%;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+@media (max-width: 780px) {
+    .edit {
+        display: flex;
+        flex-direction: column;
+    }
+    .edit-imgdiv {
+        height: 15rem;
+        width: 20rem;
+    }
+}
+
+.edit-btnsection button {
+    width: 7rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: #FF385C;
+    color: white;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    padding: 0.3rem;
+}
+
+.edit-btnsection button:active {
+    transform: scale(0.95);
+}
+
+#edit-save {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+
+
+/* review blur */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 1000;
+    display: none;
+}
+
+.blurred {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+/* Review Modal */
+.review {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 2rem;  /* matching your show-imgdiv style */
+    box-shadow: 0px 4px 25px rgba(0,0,0,0.25);
+    width: 28rem;
+    max-width: 90%;
+    z-index: 1001;
+    display: none;
+}
+
+/* Modal heading */
+.review h3 {
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #FF385C; /* matches button theme */
+}
+
+/* Form elements inside modal */
+.review form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.review label {
+    font-weight: 600;
+}
+
+.review textarea {
+    width: 100%;
+    min-height: 6rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+.review input[type="range"] {
+    width: 100%;
+}
+
+/* Buttons inside modal */
+.review button {
+    width: 7rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: #FF385C;
+    color: white;
+    padding: 0.4rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    align-self: center;
+}
+
+.review button:active {
+    transform: scale(0.95);
+}
+
+.review #closeReview {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
+
+
+/* review css */
+
+.reviewclass {
+    max-width: 90%;
+    margin: 2rem auto;
+    font-family: Arial, sans-serif;
+}
+
+.reviewclass p b {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Reviews grid */
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Individual review card */
+.review-card {
+    overflow: hidden;
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.2rem;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-3px);
+}
+
+/* Reviewer name */
+.review-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+/* Star rating */
+.stars {
+    color: #FF385C;  /* Airbnb pink */
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+}
+
+/* Comment */
+.review-card p {
+    font-size: 0.95rem;
+    line-height: 1.4rem;
+    color: #333;
+}

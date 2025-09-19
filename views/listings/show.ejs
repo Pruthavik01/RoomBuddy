@@ -1,0 +1,142 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<script>
+    const searchLocation = "<%= data.location %>, <%= data.country %>";
+    const mapApi = "<%= process.env.MAP_API%>";
+</script>
+
+    <body>
+        <div class="overlay" id="overlay"></div> <!-- background blur overlay -->
+        <div class="show-div" id="mainContent">
+
+            <div class="show-imgdiv">
+                <img src="<%=data.image.url %>" alt="property image">
+            </div>
+            <div class="show-info">
+                <div class="titelname">
+                    <h3>
+                        <%= data.title %>
+                    </h3>
+                </div>
+                <div class="details">
+                    <% if(currUser){ %>
+                        <div>
+                            Owner : <i>
+                                <%= data.owner.username %>
+                            </i>
+                        </div>
+                        <% } %>
+                            <div>
+                                <%=data.location %>, <%=data.country %>
+                            </div>
+                            <div>
+                                &#8377; <%=data.price ? data.price.toLocaleString("en-IN") : "N/A" %>/night
+                            </div>
+                            <div class="show-des">
+                                <%= data.description %>
+                            </div>
+                            <div class="show-btnsection">
+                                <% if(currUser && currUser._id.equals(data.owner._id) ){ %>
+                                    <a href="/listings/<%=data._id%>/edit"><button id="edit">Edit</button></a>
+                                    <% } %>
+
+                                        <% if(currUser){ %>
+                                            <button id="reviewbtn">Review it</button>
+                                            <% } %>
+
+                                                <% if(currUser && currUser._id.equals(data.owner._id) ){ %>
+                                                    <form method="POST"
+                                                        action="/listings/<%= data._id %>?_method=DELETE">
+                                                        <button id="delete">Delete</button>
+                                                    </form>
+                                                    <% } %>
+                            </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="reviewclass" style="max-height: 500px; overflow-y: scroll; padding: 0.5rem;">
+            <p><b><i class="fa-solid fa-star"></i> All Reviews</b></p>
+            <div class="review-grid">
+                <% for (let review of data.reviews) { %>
+                    <div class="review-card" style="position: relative; text-wrap: pretty;">
+                        <% if(currUser && currUser._id.equals(review.author._id) ){ %>
+                            <form action="/listings/<%= data._id %>/reviews/<%= review._id %>?_method=DELETE"
+                                method="POST">
+                                <button style="border: none;  background: none; position: absolute; right: 5px; ">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                            <% } %>
+
+                                <h4> @ <%= review.author.username %>
+                                </h4> <!-- Later you can use review.author if linked -->
+                                <div class="stars">
+                                    <% for(let i=0; i<review.rating; i++){ %><i class="fa-solid fa-star"></i>
+                                        <% } %>
+                                            <% for(let i=review.rating; i<5; i++){ %><i class="fa-regular fa-star"></i>
+                                                <% } %>
+                                </div>
+                                <p>
+                                    <%= review.comment %>
+                                </p>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+
+
+        <!-- Review modal -->
+        <div class="review" id="reviewModal">
+            <h3>Leave a Review</h3>
+            <form action="/listings/<%= data.id %>/reviews" method="POST">
+                <div>
+                    <label for="rating">Rating</label>
+                    <input type="range" name="review[rating]" id="rating" min="0" max="5">
+                </div>
+                <div>
+                    <label for="comment">Comment</label>
+                    <textarea required name="review[comment]" id="comment"></textarea>
+                </div>
+                <div>
+                    <button class="Submit">Submit</button>
+                    <button type="button" id="closeReview">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <hr>
+
+        <div style="text-align: center; margin: 1rem;">
+            <h4>Location Map</h4>
+            <div id="map" style="height: 500px; width: 50%; border-radius: 12px; margin: auto;"></div>
+        </div>
+
+
+    </body>
+
+    <script>
+        const reviewBtn = document.getElementById("reviewbtn");
+        const reviewModal = document.getElementById("reviewModal");
+        const overlay = document.getElementById("overlay");
+        const closeBtn = document.getElementById("closeReview");
+        const mainContent = document.getElementById("mainContent");
+        reviewBtn.addEventListener("click", () => {
+            reviewModal.style.display = "block";
+            overlay.style.display = "block";
+            mainContent.classList.add("blurred");
+        });
+
+        function closeModal() {
+            reviewModal.style.display = "none";
+            overlay.style.display = "none";
+            mainContent.classList.remove("blurred");
+        }
+
+        closeBtn.addEventListener("click", closeModal);
+        overlay.addEventListener("click", closeModal);
+    </script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="/js/map.js"></script>

@@ -1,0 +1,40 @@
+<style>
+    .floatingAlert {
+        position: fixed;
+        top: 1rem;
+        z-index: 1025;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+    }
+    
+    .floatingAlert.show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+</style>
+
+<% if (success && success.length) { %>
+    <div class="floatingAlert alert alert-success alert-dismissible fade show col-6 offset-3 mt-2 text-center" role="alert">
+        <b><%= success %></b> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if (error && error.length) { %>
+    <div class="floatingAlert alert alert-danger alert-dismissible fade show col-6 offset-3 mt-2 text-center" role="alert">
+        <b><%= error %></b> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<script>
+    // Auto-hide after 3 seconds
+    setTimeout(() => {
+        const alerts = document.querySelectorAll('.floatingAlert');
+        alerts.forEach(alert => {
+            alert.classList.remove('show'); 
+            setTimeout(() => alert.remove(), 500);
+        });
+    }, 3000);
+</script>

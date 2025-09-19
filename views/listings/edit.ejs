@@ -1,0 +1,81 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<body>
+    <div class="edit">
+
+        <!-- Image Section -->
+        <div class="edit-imgdiv">
+            <img id="preview" src="<%= editlist.image.url %>" alt="property image">
+        </div>
+
+        <!-- Info Section -->
+        <div class="edit-info">
+            <form method="POST" action="/listings/<%= editlist._id %>?_method=PATCH" enctype="multipart/form-data">
+
+                <!-- Title -->
+                <div class="edit-titelname">
+                    <h3>
+                        Title : <input required type="text" name="listing[title]" value="<%= editlist.title %>">
+                    </h3>
+                </div>
+
+                <div class="edit-details">
+
+                    <!-- Location + Country -->
+                    <div>
+                        Location : <input required type="text" name="listing[location]" value="<%= editlist.location %>"> 
+                    </div>
+                    <div>
+                        Country : <input required type="text" name="listing[country]" value="<%= editlist.country %>">
+                    </div>
+
+                    <!-- Price -->
+                    <div>
+                        Price : 
+                        &#8377; 
+                        <input required type="number" name="listing[price]" value="<%= editlist.price %>"> /Night
+                    </div>
+
+                    <!-- Description -->
+                    <div class="edit-des">
+                        Description : <input type="text" name="listing[description]" value="<%= editlist.description %>">
+                
+                    </div>
+
+                    <!-- Image URL -->
+                    <div>
+                        Image URL : <input type="file" name="listing[image]" id="imageInput">
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="edit-btnsection">
+                        <button type="submit" id="edit-save">Save Changes</button>
+                        <a href="/listings/<%= editlist._id %>"><button type="button" id="edit-cancel">Cancel</button></a>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </body>
+
+<script>
+    const input = document.getElementById("imageInput");
+    const preview = document.getElementById("preview");
+
+    input.addEventListener("change", (event) => {
+        const file = event.target.files[0]; // get selected file
+        if (file) {
+            // create temporary URL for the file
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result; // set preview image
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // fallback if no file chosen
+            preview.src = "https://via.placeholder.com/300x200?text=No+Image";
+        }
+    });
+</script>
