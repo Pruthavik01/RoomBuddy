@@ -11,7 +11,7 @@
         }
 
         .filter {
-            
+
             text-align: center;
             margin-inline: 1rem;
             margin-top: 1rem;
@@ -43,10 +43,19 @@
             align-items: center;
         }
 
-        @media(max-width:1080px){
-            .tax-toggle{
+        @media(max-width:1080px) {
+            .tax-toggle {
                 display: none !important;
             }
+        }
+
+        .rows {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+            gap: 1rem !important;
+            margin: 0 !important;
+            padding: 1rem 2rem !important;
+            justify-items: center !important;
         }
     </style>
 
