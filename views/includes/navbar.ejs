@@ -23,11 +23,35 @@
     padding: 0.5rem 3rem;
     font-size: 1rem;
   }
+
+  .min-log-add{
+    /* border: 1px solid black; */
+    /* border-radius: 6px; */
+    display: none;
+    margin: 5px;
+    padding: 2px;
+  }
+
   @media(max-width:950px){
     .search{
         display: none  !important;
     }
+
   }
+
+  @media(max-width: 767.5px){
+    .min-log-add{
+      display: inline;
+    }
+    .navbar{
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    } 
+    
+  }
+
+
+
   .navbar-expand-md .navbar-collapse {
     width: 33% !important;
   }
@@ -41,10 +65,21 @@
             <a class="navbar-brand" href="/listings"><i style="color: #FF385C; font-size: 2rem;"
                     class="fa-brands fa-airbnb"> <span>Roombuddy</span></i></a>
         </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+        
+        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
             <span class="navbar-toggler-icon"></span>
-        </button>
-
+        </button> -->
+        
+        <div class="min-log-add">
+          <a  href="/listings/new">
+            <i class="fa-regular fa-square-plus"></i>
+          </a>
+        </div>
+        <div class="min-log-add">
+          <a href="/login">
+            <i class="fa-solid fa-user"></i>
+          </a>
+        </div>
 
         <div class="search" style="margin: auto; display: inline">
             <form class="d-flex" role="search" >
@@ -54,7 +89,7 @@
             </form>
         </div>
 
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="collapse navbar-collapse" id="">
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="/listings/new">Add new Hostel</a>
                 <% if(!currUser) { %>

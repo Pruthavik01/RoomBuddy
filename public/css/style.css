@@ -6,7 +6,7 @@ body{
 
 .cont{
     flex: 1;
-    min-height: 85vh;
+    min-height: 80vh;
 }
 
 a {
@@ -240,6 +240,7 @@ footer {
 
 .show-btnsection{
     display: flex;
+    flex-wrap: wrap;
 }
 
 .show-imgdiv{
@@ -249,11 +250,12 @@ footer {
 }
 
 .show-imgdiv img{
-    width: 100%;        
+    width: 80%;        
     height: 100%;       
     object-fit: cover;  
     border-radius: 2rem;
     display: block;
+    margin-left: auto;
 }
 
 .show-des{
@@ -264,6 +266,7 @@ footer {
 }
 .show-info{
     padding: 1rem;
+    /* width: 100%; */
 }
 .details{
     margin: 2rem;
@@ -271,20 +274,37 @@ footer {
     justify-content: center;
 }
 
+#showdivs{
+    width: 50%;
+}
+
 @media (max-width: 780px){
 
     .show-div{
         display: flex;
+        /* padding-top: 7rem; */
         flex-direction: column;
     }
     .show-imgdiv{
         height: 15rem;
         width: 20rem;
     }
+    .show-imgdiv img{
+        margin: auto;
+    }
+    #showdivs{
+        width: 100%;
+    }
+    .backbtn{
+        position: static !important;
+        margin: auto;
+        margin-left: 3rem !important;
+    }
+    
 }
 
 .show-btnsection button{
-    width: 7rem;
+    /* width: 7rem; */
     border-radius: 2rem;
     border: none;
     background-color: #FF385C;
@@ -306,6 +326,9 @@ footer {
     border: 1px solid black;
 }
 
+.show-btnsection #edit,#reviewbtn,#delete{
+    min-width: 7rem;
+}
 
 /* edit route */
 

@@ -1,18 +1,25 @@
 <% layout("/layouts/boilerplate.ejs") %>
 
-<script>
-    const searchLocation = "<%= data.location %>, <%= data.country %>";
-    const mapApi = "<%= process.env.MAP_API%>";
-</script>
+    <script>
+        const searchLocation = "<%= data.location %>, <%= data.country %>";
+        const mapApi = "<%= process.env.MAP_API%>";
+    </script>
 
     <body>
         <div class="overlay" id="overlay"></div> <!-- background blur overlay -->
         <div class="show-div" id="mainContent">
 
-            <div class="show-imgdiv">
+            <div class="show-imgdiv" id="showdivs">
                 <img src="<%=data.image.url %>" alt="property image">
             </div>
-            <div class="show-info">
+
+            <div class="backbtn" style="position: fixed; top: 9vh; left: 1rem;">
+                <a href="/listings">
+                    <i class="fa-solid fa-arrow-left"></i> Back
+                </a>
+            </div>
+
+            <div class="show-info" id="showdivs">
                 <div class="titelname">
                     <h3>
                         <%= data.title %>
@@ -40,7 +47,7 @@
                                     <a href="/listings/<%=data._id%>/edit"><button id="edit">Edit</button></a>
                                     <% } %>
 
-                                        <% if(currUser){ %>
+                                        <% if(currUser && !currUser._id.equals(data.owner._id)){ %>
                                             <button id="reviewbtn">Review it</button>
                                             <% } %>
 
@@ -56,7 +63,8 @@
             </div>
 
         </div>
-        <div class="reviewclass" style="max-height: 500px; overflow-y: scroll; padding: 0.5rem;">
+        
+        <div class="reviewclass" style="max-height: 50vh; overflow-y: scroll; padding: 0.5rem;">
             <p><b><i class="fa-solid fa-star"></i> All Reviews</b></p>
             <div class="review-grid">
                 <% for (let review of data.reviews) { %>
@@ -79,7 +87,7 @@
                                                 <% } %>
                                 </div>
                                 <p>
-                                    <%= review.comment %>
+                                    <%= review.comment.split("\n").slice(0, 3).join("\n") + " ..." ;%>
                                 </p>
                     </div>
                     <% } %>
@@ -107,10 +115,12 @@
         </div>
         <hr>
 
-        <div style="text-align: center; margin: 1rem;">
+        <div style="text-align: center; margin: 2rem; min-height: 50vh;">
             <h4>Location Map</h4>
-            <div id="map" style="height: 500px; width: 50%; border-radius: 12px; margin: auto;"></div>
+            <div id="map" style="height: 60vh; width: 100%; max-width: 800px; border-radius: 12px; margin: auto;">
+            </div>
         </div>
+
 
 
     </body>
