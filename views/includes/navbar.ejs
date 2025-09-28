@@ -8,6 +8,7 @@
     justify-content: center;
     padding-inline: 1rem;
   }
+
   .search-btn:hover {
     background-color: #fe424d;
     color: #fff;
@@ -24,7 +25,7 @@
     font-size: 1rem;
   }
 
-  .min-log-add{
+  .min-log-add {
     /* border: 1px solid black; */
     /* border-radius: 6px; */
     display: none;
@@ -32,22 +33,23 @@
     padding: 2px;
   }
 
-  @media(max-width:950px){
-    .search{
-        display: none  !important;
+  @media(max-width:950px) {
+    .search {
+      display: none !important;
     }
 
   }
 
-  @media(max-width: 767.5px){
-    .min-log-add{
+  @media(max-width: 767.5px) {
+    .min-log-add {
       display: inline;
     }
-    .navbar{
+
+    .navbar {
       padding-left: 0 !important;
       padding-right: 0 !important;
-    } 
-    
+    }
+
   }
 
 
@@ -55,50 +57,56 @@
   .navbar-expand-md .navbar-collapse {
     width: 33% !important;
   }
-  
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
+  <div class="container-fluid">
 
-        <div class=" navbar-collapse">
-            <a class="navbar-brand" href="/listings"><i style="color: #FF385C; font-size: 2rem;"
-                    class="fa-brands fa-airbnb"> <span>Roombuddy</span></i></a>
-        </div>
-        
-        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+    <div class=" navbar-collapse">
+      <a class="navbar-brand" href="/listings"><i style="color: #FF385C; font-size: 2rem;" class="fa-brands fa-airbnb">
+          <span>Roombuddy</span></i></a>
+    </div>
+
+    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
             <span class="navbar-toggler-icon"></span>
         </button> -->
-        
-        <div class="min-log-add">
-          <a  href="/listings/new">
-            <i class="fa-regular fa-square-plus"></i>
-          </a>
-        </div>
-        <div class="min-log-add">
-          <a href="/login">
-            <i class="fa-solid fa-user"></i>
-          </a>
-        </div>
 
-        <div class="search" style="margin: auto; display: inline">
-            <form class="d-flex" role="search" >
-                <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations">
-                <button class="btn search-btn" type="submit"><i
-                        class="fa-solid fa-magnifying-glass"></i>Search</button>
-            </form>
-        </div>
+    <div class="min-log-add">
+      <a href="/listings/new">
+        <i class="fa-regular fa-square-plus"></i>
+      </a>
+    </div>
+    <div class="min-log-add">
 
-        <div class="collapse navbar-collapse" id="">
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/listings/new">Add new Hostel</a>
-                <% if(!currUser) { %>
-                    <a class="nav-link" href="/login"><b>Login</b></a>
-                <% } else { %>
-                    <a class="nav-link" href="/logout"><b>Logout</b></a>
-                <% } %>
-            </div>
-        </div>
+      <% if(!currUser) { %>
+        <a href="/login">
+          <i class="fa-solid fa-user"></i>
+        </a>
+      <% } else { %>
+          <a href="/logout">
+            <i class="fa-solid fa-user-minus"></i>
+          </a>
+      <% } %>
+
     </div>
+
+    <div class="search" style="margin: auto; display: inline">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations">
+        <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+      </form>
     </div>
+
+    <div class="collapse navbar-collapse" id="">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Add new Hostel</a>
+        <% if(!currUser) { %>
+          <a class="nav-link" href="/login"><b>Login</b></a>
+          <% } else { %>
+            <a class="nav-link" href="/logout"><b>Logout</b></a>
+            <% } %>
+      </div>
+    </div>
+  </div>
+  </div>
 </nav>
