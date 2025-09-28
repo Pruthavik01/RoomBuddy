@@ -16,24 +16,28 @@
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Upload Listing Image</label>
-                    <input name="listing[image]" type="file" class="form-control" >
+                    <input name="listing[image]" type="file" class="form-control">
                 </div>
                 <div class="row">
                     <div class="mb-3 col-md-4">
                         <label for="price" class="form-label">Price</label>
-                        <input type="number" name="listing[price]"  class="form-control" required>
+                        <input type="number" name="listing[price]" class="form-control" required>
                         <div class="invalid-feedback">Price should be valid</div>
                     </div>
                     <div class="mb-3 col-md-8">
                         <label for="country" class="form-label">Country</label>
-                        <input name="listing[country]" type="text" class="form-control" required>
+                        <input list="countryList" name="listing[country]" class="form-control" required>
+                        <datalist id="countryList">
+                            <% countries.forEach(country=> { %>
+                                <option value="<%= country %>"></option>
+                                <% }) %>
+                        </datalist>
                         <div class="invalid-feedback">Country name should be valid</div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="location" class="form-label">Location</label>
-                    <input name="listing[location]"  type="text" class="form-control"
-                        required>
+                    <input name="listing[location]" type="text" class="form-control" required>
                     <div class="invalid-feedback">Location should be valid</div>
                 </div>
                 <button class="btn btn-dark my-3 add-btn">Add</button>

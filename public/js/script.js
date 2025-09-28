@@ -1,14 +1,26 @@
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 (() => {
   'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
   const forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
   Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
+      let isValid = form.checkValidity()
+
+      // Extra check: ensure country is in the datalist
+      const countryInput = form.querySelector('input[list="countryList"]')
+      if (countryInput) {
+        const datalist = document.getElementById('countryList')
+        const options = Array.from(datalist.options).map(o => o.value)
+        if (!options.includes(countryInput.value)) {
+          isValid = false
+          countryInput.setCustomValidity("Invalid country")
+        } else {
+          countryInput.setCustomValidity("")
+        }
+      }
+
+      if (!isValid) {
         event.preventDefault()
         event.stopPropagation()
       }
@@ -17,3 +29,4 @@
     }, false)
   })
 })()
+

@@ -1,4 +1,5 @@
 const Listing = require("../models/listing.js");
+const { getNames } = require("country-list");
 
 module.exports.index= async(req,res)=>{
     let allListing = await Listing.find({});
@@ -6,7 +7,8 @@ module.exports.index= async(req,res)=>{
 }
 
 module.exports.renderNewForm = (req,res)=>{
-    res.render("listings/new.ejs");   
+     const countries = getNames(); // array of names
+    res.render("listings/new.ejs", { countries });   
 }
 
 module.exports.showListing = async (req, res)=>{
@@ -35,7 +37,7 @@ module.exports.createListing =  async(req,res,next)=>{
     } else {
         // fallback: default image from cloudinary
         newlisting.image = { 
-            url: "https://images.unsplash.com/photo-1488462237308-ecaa28b729d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2t5JTIwdmFjYXRpb258ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=60",
+            url: "https://res.cloudinary.com/duf9u6odn/image/upload/v1759079554/Screenshot_2025-09-28_223545_zbh9sg.png",
             filename: "default_image" 
         };
     }
