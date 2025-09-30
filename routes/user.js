@@ -22,6 +22,11 @@ router.route("/login")
 
 router.get("/logout", userController.logout);
 
+router.route("/verify-otp")
+    .get((req,res)=> res.render("users/verify-otp", { email: req.session.email }))
+    .post(wrapAsync(userController.verifyOTP));
+
+
 module.exports = router;
 
 // router.get("/signup", userController.userSignupForm);

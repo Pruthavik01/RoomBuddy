@@ -61,7 +61,7 @@ const sessionOptions = {
     cookie:{
         expires: Date.now()  + 7*24*60*60*1000,
         maxAge: 7*24*60*60*1000,
-        httpOny:true,
+        httpOnly:true,
     }
 } 
 
@@ -103,6 +103,3 @@ app.use((err,req,res,next)=>{      //is your error-handling middleware.
 app.listen(8080,()=>{
     console.log("Listning to Port 8080");
 })
-
-// const os  = require("os");
-// console.log(os.cpus().length);

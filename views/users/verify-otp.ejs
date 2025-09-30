@@ -1,0 +1,52 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="card shadow p-4 col-md-6 mt-3">
+    <h1 class="text-center mb-4">Verify OTP</h1>
+
+    <% if (locals.error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <form action="/verify-otp" method="POST" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="otp" class="form-label">Enter OTP</label>
+        <input type="text" name="otp" id="otp" class="form-control" required>
+        <div class="invalid-feedback">Please enter the OTP sent to your email</div>
+      </div>
+
+      <!-- Countdown display -->
+      <p class="text-danger fw-bold text-center">
+        OTP expires in <span id="timer">02:00</span>
+      </p>
+
+      <button class="btn btn-primary w-100">Verify OTP</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Set countdown to 2 minutes (120 seconds)
+  let timeLeft = 120;
+
+  const timerElement = document.getElementById("timer");
+  const countdown = setInterval(() => {
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+
+    // Format as MM:SS
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    timerElement.textContent = `${minutes}:${seconds}`;
+
+    timeLeft--;
+
+    // When time runs out
+    if (timeLeft < 0) {
+      clearInterval(countdown);
+      timerElement.textContent = "Expired";
+      alert("Your OTP has expired. Please request a new one.");
+      // Optional: disable form
+      document.querySelector("button[type=submit]").disabled = true;
+    }
+  }, 1000);
+</script>
