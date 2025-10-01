@@ -3,13 +3,9 @@ const otpGenerator = require("otp-generator");
 const nodemailer = require("nodemailer");
 const session = require("express-session");
 
-const transporter = nodemailer.createTransport({
-    service: "SendGrid",
-    auth: {
-        user: "apikey", // this must be the literal string "apikey"
-        pass: process.env.SENDGRID_API_KEY,
-    }
-});
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 
 
 
@@ -61,13 +57,14 @@ module.exports.signup = async (req, res, next) => {
         req.session.otpExpires = Date.now() + 2 * 60 * 1000; // 2 minutes
 
         // Send OTP via email
-        await transporter.sendMail({
-            from: "ramr33770@gmail.com",  // must be verified in SendGrid
+        await sgMail.send({
+            from: "ramr33770@gmail.com", // must be verified in SendGrid
             to: email,
             subject: "Your Roombuddy OTP Code",
             text: `Your OTP is: ${otp}. It will expire in 2 minutes.`,
-            html: `<h1>Your OTP is: ${otp}. It will expire in 2 minutes.</h1>`
+            html: `<h1>Your OTP is: <b>${otp}</b>. It will expire in 2 minutes.</h1>`
         });
+
 
         res.render("users/verify-otp", { email });
 
