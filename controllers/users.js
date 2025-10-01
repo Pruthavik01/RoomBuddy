@@ -1,6 +1,5 @@
 const User = require("../models/user.js");
 const otpGenerator = require("otp-generator");
-const nodemailer = require("nodemailer");
 const session = require("express-session");
 
 const sgMail = require("@sendgrid/mail");
