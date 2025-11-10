@@ -1,7 +1,7 @@
 # RoomBuddy
 
 A full-stack web application for listing and booking hostel accommodations, built with Node.js, Express, and MongoDB. RoomBuddy provides a platform similar to Airbnb, specifically focused on hostel and budget accommodation listings.
-
+- URL: [RoomBuddy](https://roombuddy-kj4v.onrender.com/listings)
 ## 🌟 Features
 
 ### User Management
@@ -169,7 +169,7 @@ node init/index.js
 node app.js
 ```
 
-The application will run on `http://localhost:8080`
+The application will run on `http://localhost:8080/listings`
 
 ## 📝 API Routes
 
